@@ -2414,7 +2414,7 @@ DataTableBodyRowComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0"
 DataTableBodyRowComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.1", type: DataTableBodyRowComponent, selector: "datatable-body-row", inputs: { columns: "columns", innerWidth: "innerWidth", expanded: "expanded", rowClass: "rowClass", row: "row", group: "group", isSelected: "isSelected", rowIndex: "rowIndex", displayCheck: "displayCheck", treeStatus: "treeStatus", offsetX: "offsetX", rowHeight: "rowHeight" }, outputs: { activate: "activate", treeAction: "treeAction" }, host: { listeners: { "keydown": "onKeyDown($event)", "mouseenter": "onMouseenter($event)" }, properties: { "class": "this.cssClass", "style.height.px": "this.rowHeight", "style.width.px": "this.columnsTotalWidths" } }, ngImport: i0, template: `
     <div
       *ngFor="let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups"
-      class="datatable-row-{{ colGroup.type }} datatable-row-group"
+      class="datatable-row-{{ colGroup.type }} datatable-row-group datatable-row-level-{{row.level ?? 0}}"
       [ngStyle]="_groupStyles[colGroup.type]"
     >
       <datatable-body-cell
@@ -2444,7 +2444,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImpor
                     template: `
     <div
       *ngFor="let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups"
-      class="datatable-row-{{ colGroup.type }} datatable-row-group"
+      class="datatable-row-{{ colGroup.type }} datatable-row-group datatable-row-level-{{row.level ?? 0}}"
       [ngStyle]="_groupStyles[colGroup.type]"
     >
       <datatable-body-cell
