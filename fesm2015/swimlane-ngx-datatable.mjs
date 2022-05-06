@@ -2308,6 +2308,7 @@ class DataTableBodyRowComponent {
         return this._offsetX;
     }
     get cssClass() {
+        var _a, _b;
         let cls = 'datatable-body-row';
         if (this.isSelected) {
             cls += ' active';
@@ -2318,6 +2319,7 @@ class DataTableBodyRowComponent {
         if (this.rowIndex % 2 === 0) {
             cls += ' datatable-row-even';
         }
+        cls += ' datatable-row-level-' + ((_b = (_a = this.row) === null || _a === void 0 ? void 0 : _a.level) !== null && _b !== void 0 ? _b : 0);
         if (this.rowClass) {
             const res = this.rowClass(this.row);
             if (typeof res === 'string') {
@@ -2418,7 +2420,7 @@ DataTableBodyRowComponent.ɵfac = i0.ɵɵngDeclareFactory({ minVersion: "12.0.0"
 DataTableBodyRowComponent.ɵcmp = i0.ɵɵngDeclareComponent({ minVersion: "12.0.0", version: "13.1.1", type: DataTableBodyRowComponent, selector: "datatable-body-row", inputs: { columns: "columns", innerWidth: "innerWidth", expanded: "expanded", rowClass: "rowClass", row: "row", group: "group", isSelected: "isSelected", rowIndex: "rowIndex", displayCheck: "displayCheck", treeStatus: "treeStatus", offsetX: "offsetX", rowHeight: "rowHeight" }, outputs: { activate: "activate", treeAction: "treeAction" }, host: { listeners: { "keydown": "onKeyDown($event)", "mouseenter": "onMouseenter($event)" }, properties: { "class": "this.cssClass", "style.height.px": "this.rowHeight", "style.width.px": "this.columnsTotalWidths" } }, ngImport: i0, template: `
     <div
       *ngFor="let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups"
-      class="datatable-row-{{ colGroup.type }} datatable-row-group datatable-row-level-{{row.level ?? 0}}"
+      class="datatable-row-{{ colGroup.type }} datatable-row-group"
       [ngStyle]="_groupStyles[colGroup.type]"
     >
       <datatable-body-cell
@@ -2448,7 +2450,7 @@ i0.ɵɵngDeclareClassMetadata({ minVersion: "12.0.0", version: "13.1.1", ngImpor
                     template: `
     <div
       *ngFor="let colGroup of _columnsByPin; let i = index; trackBy: trackByGroups"
-      class="datatable-row-{{ colGroup.type }} datatable-row-group datatable-row-level-{{row.level ?? 0}}"
+      class="datatable-row-{{ colGroup.type }} datatable-row-group"
       [ngStyle]="_groupStyles[colGroup.type]"
     >
       <datatable-body-cell
